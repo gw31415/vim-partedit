@@ -77,7 +77,9 @@ function! partedit#start(startline, endline, ...)
   let b:partedit__contents = original_contents
   let b:partedit__prefix = prefix
   let b:partedit__bufhidden = bufhidden
-  setlocal buftype=acwrite nomodified bufhidden=wipe noswapfile
+  " NOTE(gw31415): Delete acwrite: because Neovim LSP does not start
+  " Reference: https://github.com/neovim/neovim/blob/d4c8e8df1c80cf195dc1d1b98c1c8429dd3f43ed/runtime/lua/vim/lsp.lua#L535-L537
+  setlocal nomodified bufhidden=wipe noswapfile
 
   command! -buffer -bar ParteditEnd execute b:partedit__bufnr 'buffer'
 
